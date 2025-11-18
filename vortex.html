@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VORTEXとは | VORTEX KOMATSU</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-vortex">
+
+  <!-- ===== ヘッダー ===== -->
+<header>
+  <div class="header-inner">
+    <!-- ロゴ -->
+    <div class="logo">
+      <a href="./index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
+
+    <!-- PCナビ -->
+    <nav class="menu" aria-label="グローバルナビ">
+      <ul>
+        <li><a href="./index.html" data-nav="index">ホーム</a></li>
+        <li class="nav-item has-caret">
+          <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+          <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
+            <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+            <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+          </div>
+        </li>
+        <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
+        <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
+        <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <!-- ※ ラベルはこのままでOK（位置は右上固定） -->
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+
+  <!-- ★ ここに移動： input は header 直下（mobile-panel の兄弟にする） -->
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
+
+  <!-- モバイルメニュー -->
+  <nav class="mobile-panel" aria-label="モバイルメニュー">
+    <a href="./index.html" data-nav="index">ホーム</a>
+
+    <div class="mobile-row" style="margin-bottom:10px;">
+      <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+      <button type="button" class="firsttime-toggle"
+              data-toggle="firsttime" aria-expanded="false"
+              aria-controls="mobile-firsttime-sub" title="U12/U14 を開く"></button>
+    </div>
+
+    <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
+      <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+      <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+    </div>
+
+    <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
+    <a href="./schedule.html" data-nav="schedule">スケジュール</a>
+    <a href="./contact.html" data-nav="contact">お問い合わせ</a>
+  </nav>
+</header>
+
+
+
+
+<script>
+  // 現在ページに応じてナビをハイライト（末尾ファイル名で判定）
+  (function() {
+    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const map = {
+      'index.html': 'index',
+      'firsttime.html': 'firsttime',
+      'u12.html': 'u12',
+      'u14.html': 'u14',
+      'vortex.html': 'vortex',
+      'schedule.html': 'schedule',
+      'contact.html': 'contact'
+    };
+    const key = map[path] || null;
+    if (key) {
+      document.querySelectorAll('[data-nav="'+key+'"]').forEach(a => {
+        a.classList.add('active');
+      });
+    }
+
+    // モバイル開閉時、背景スクロール抑止（あなたのCSS仕様に合わせる）
+    const toggle = document.getElementById('nav-toggle');
+    if (toggle) {
+      toggle.addEventListener('change', () => {
+        document.body.classList.toggle('nav-open', toggle.checked);
+      });
+    }
+  })();
+</script>
+
+
+  <!-- ===== メイン ===== -->
+  <main class="container">
+
+    <!-- Hero Section -->
+    <!-- Hero Section（控えめトーン） -->
+
+
+    <nav class="breadcrumb">
+      <a href="index.html">ホーム</a><span>›</span><span>VORTEXとは</span>
+    </nav>
+
+    <!-- 活動理念 -->
+    <section class="section">
+      <h2 class="rule-left">活動理念</h2>
+      <p>「今この一本に夢を乗せて」――私たちはこの言葉を胸に、<br>スポーツを通して仲間と挑戦し、成長し合う環境を作ります。</p>
+      <div class="thumb" style="height:300px; background:#d9d9d9; border-radius:12px; margin-top:20px;"></div>
+    </section>
+
+    <!-- 指導方針 -->
+    <section class="section">
+      <h2 class="rule-left">指導方針</h2>
+      <ul>
+        <li>技術と人間性の両立を目指した育成</li>
+        <li>挑戦を恐れず、自ら考え行動する姿勢を育てる</li>
+        <li>礼儀と感謝の気持ちを大切にしたチーム作り</li>
+      </ul>
+      <div class="thumb" style="height:300px; background:#d9d9d9; border-radius:12px; margin-top:20px;"></div>
+    </section>
+
+    <!-- VORTEXの由来 -->
+    <section class="section">
+      <h2 class="rule-left">VORTEXの由来</h2>
+      <p>
+        「VORTEX（ボルテックス）」とは英語で“渦”を意味します。<br>
+        一人ひとりの小さな努力が大きな流れを生み、仲間を巻き込みながら夢へと進んでいく。<br>
+        チーム全員がひとつの渦となり、力強く前へ進む姿を象徴しています。
+      </p>
+      <div class="thumb" style="height:300px; background:#d9d9d9; border-radius:12px; margin-top:20px;"></div>
+    </section>
+
+    <!-- クラブの特徴 -->
+    <section class="section">
+      <h2 class="rule-left">クラブの特徴（強み）</h2>
+      <p>VORTEX小松は、地域に根ざした育成と、一貫した指導体制を特徴としています。</p>
+      <div class="thumb" style="height:300px; background:#d9d9d9; border-radius:12px; margin-top:20px;"></div>
+    </section>
+
+    <!-- 指導者紹介 -->
+<!-- 指導者紹介 -->
+<section class="section">
+  <h2 class="rule-left">指導者紹介</h2>
+
+  <div class="coach-list">
+
+    <!-- Coach 1 -->
+    <article class="coach-detail">
+      
+       <div class="coach-photo-large" style="background-image: url('images/noa.jpg');"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+    <!-- Coach 2 -->
+    <article class="coach-detail">
+      <div class="coach-photo-large" aria-label="顔写真（差し替え用）"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+    <!-- Coach 3 -->
+    <article class="coach-detail">
+      <div class="coach-photo-large" aria-label="顔写真（差し替え用）"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+    <!-- Coach 4 -->
+    <article class="coach-detail">
+      <div class="coach-photo-large" aria-label="顔写真（差し替え用）"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+    <!-- Coach 5 -->
+    <article class="coach-detail">
+      <div class="coach-photo-large" aria-label="顔写真（差し替え用）"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+    <!-- Coach 6 -->
+    <article class="coach-detail">
+      <div class="coach-photo-large" aria-label="顔写真（差し替え用）"></div>
+      <div class="coach-meta">
+        <h3 class="coach-name">（指導者名）</h3>
+        <p class="coach-title">（肩書き・見出し）</p>
+
+        <h4 class="coach-label">取得資格</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">選手歴・指導歴</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">全国大会出場経験</h4>
+        <div class="coach-body"></div>
+
+        <h4 class="coach-label">一言</h4>
+        <div class="coach-body"></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+    <!-- 活動概要 -->
+    <!-- 活動概要（VORTEXページは“要点だけ”の簡素版） -->
+<section class="section">
+  <h2 class="rule-left">活動概要</h2>
+
+  <div class="overview-cards">
+
+    <!-- U12 -->
+    <div class="overview-card">
+  <h3>U12（小学生）</h3>
+
+  <div class="overview-flex">
+    <!-- 左：一覧表 -->
+    <ul class="overview-list">
+      <li><span class="k">活動日</span><span class="v">火・木・土</span></li>
+      <li><span class="k">時間</span><span class="v">放課後（約2時間）</span></li>
+      <li><span class="k">月会費</span><span class="v">5,000円</span></li>
+      <li><span class="k">主な場所</span><span class="v">市内小学校体育館 ほか</span></li>
+    </ul>
+
+    <!-- 右：地図 -->
+    <div class="overview-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=..."
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="overview-actions">
+    <a class="btn slim" href="./u12.html">U12の詳細</a>
+    <a class="btn outline slim" href="./schedule.html">スケジュール</a>
+  </div>
+</div>
+
+    <div class="overview-card">
+  <h3>U14（中学生）</h3>
+
+  <div class="overview-flex">
+    <!-- 左：一覧表 -->
+    <ul class="overview-list">
+      <li><span class="k">活動日</span><span class="v">水・金・土・日</span></li>
+      <li><span class="k">時間</span><span class="v">放課後〜夜（約2〜3時間）</span></li>
+      <li><span class="k">月会費</span><span class="v">8,000円</span></li>
+      <li><span class="k">主な場所</span><span class="v">松陽中学校体育館 ほか</span></li>
+    </ul>
+
+    <!-- 右：地図 -->
+    <div class="overview-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=..."
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="overview-actions">
+    <a class="btn slim" href="./u14.html">U14の詳細</a>
+    <a class="btn outline slim" href="./schedule.html">スケジュール</a>
+  </div>
+</div>
+
+
+  </div>
+
+</section>
+
+
+    <!-- 共通誘導ボタン -->
+    <section class="common-cta">
+      <a href="contact.html" class="btn accent">お問い合わせ</a>
+      <a href="firsttime.html" class="btn">初めての方へ</a>
+      <a href="schedule.html" class="btn outline">スケジュール</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 VORTEX KOMATSU All Rights Reserved.</p>
+    </div>
+  </footer>
+<script src="./header.js" defer></script>
+</body>
+</html>

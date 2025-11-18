@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U14 | VORTEX小松</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- 共通ヘッダー -->
+<header>
+  <div class="header-inner">
+    <!-- ロゴ -->
+    <div class="logo">
+      <a href="./index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
+
+    <!-- PCナビ -->
+    <nav class="menu" aria-label="グローバルナビ">
+      <ul>
+        <li><a href="./index.html" data-nav="index">ホーム</a></li>
+        <li class="nav-item has-caret">
+          <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+          <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
+            <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+            <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+          </div>
+        </li>
+        <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
+        <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
+        <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <!-- ※ ラベルはこのままでOK（位置は右上固定） -->
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+
+  <!-- ★ ここに移動： input は header 直下（mobile-panel の兄弟にする） -->
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
+
+  <!-- モバイルメニュー -->
+  <nav class="mobile-panel" aria-label="モバイルメニュー">
+    <a href="./index.html" data-nav="index">ホーム</a>
+
+    <div class="mobile-row" style="margin-bottom:10px;">
+      <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+      <button type="button" class="firsttime-toggle"
+              data-toggle="firsttime" aria-expanded="false"
+              aria-controls="mobile-firsttime-sub" title="U12/U14 を開く"></button>
+    </div>
+
+    <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
+      <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+      <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+    </div>
+
+    <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
+    <a href="./schedule.html" data-nav="schedule">スケジュール</a>
+    <a href="./contact.html" data-nav="contact">お問い合わせ</a>
+  </nav>
+</header>
+
+
+<script>
+  // 現在ページに応じてナビをハイライト（末尾ファイル名で判定）
+  (function() {
+    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const map = {
+      'index.html': 'index',
+      'firsttime.html': 'firsttime',
+      'u12.html': 'u12',
+      'u14.html': 'u14',
+      'vortex.html': 'vortex',
+      'schedule.html': 'schedule',
+      'contact.html': 'contact'
+    };
+    const key = map[path] || null;
+    if (key) {
+      document.querySelectorAll('[data-nav="'+key+'"]').forEach(a => {
+        a.classList.add('active');
+      });
+    }
+
+    // モバイル開閉時、背景スクロール抑止（あなたのCSS仕様に合わせる）
+    const toggle = document.getElementById('nav-toggle');
+    if (toggle) {
+      toggle.addEventListener('change', () => {
+        document.body.classList.toggle('nav-open', toggle.checked);
+      });
+    }
+  })();
+</script>
+
+
+
+<main class="container">
+  <nav class="breadcrumb">
+    <a href="index.html">ホーム</a><span>›</span><a href="first-time.html">初めての方へ</a><span>›</span><span>U14</span>
+  </nav>
+
+  <section class="section">
+    <h2 class="rule-left">U14（中学生チーム）</h2>
+    <p style="margin-bottom:28px;">個々の力を伸ばし、チーム戦術を学びます。水・金・土・日／月会費：8,000円。</p>
+
+    <div class="activity-card">
+      <h3 class="rule-left">基本情報</h3>
+      <div class="activity-flex">
+        <table class="activity-table">
+          <tbody>
+            <tr><th>活動日</th><td>水・金・土・日</td></tr>
+            <tr><th>時間</th><td>放課後〜夜（約2〜3時間）</td></tr>
+            <tr><th>活動場所</th><td>松陽中学校 体育館</td></tr>
+            <tr><th>月会費</th><td>8,000円</td></tr>
+            <tr><th>方針</th><td>実戦力・戦術理解の強化</td></tr>
+          </tbody>
+        </table>
+        <div class="map-box">
+          <h4>松陽中学校 体育館</h4>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3269.5874037829184!2d136.4537!3d36.4045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff83c8df4f9b1cf%3A0x21a0a7737b4e5cb5!2z5p2x5bGL5biC5pyo5aSn5a2m!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんなことやってます（3つ復活） -->
+  <section class="section activity-samples">
+    <h3 class="rule-left">クラブの取り組み</h3>
+    <div class="grid">
+      <div class="card"><div class="thumb"></div><h3 class="rule-left">戦術理解</h3><p class="meta">ローテ・システム理解、ポジション別課題。</p></div>
+      <div class="card"><div class="thumb"></div><h3 class="rule-left">ゲーム形式</h3><p class="meta">実戦に近い状況で判断力を鍛える。</p></div>
+      <div class="card"><div class="thumb"></div><h3 class="rule-left">フィジカル</h3><p class="meta">瞬発・持久・アジリティを強化。</p></div>
+    </div>
+  </section>
+
+  <!-- 指導者紹介（FAQの前に挿入） -->
+  <section class="section">
+    <h3 class="rule-left">指導者紹介</h3>
+    <div class="coach-grid">
+      <div class="coach-card">
+        <div class="avatar" aria-label="写真予定"></div>
+        <div class="name">（氏名）</div>
+        <div class="bio">（経歴や一言）</div>
+      </div>
+      <div class="coach-card">
+        <div class="avatar"></div>
+        <div class="name">（氏名）</div>
+        <div class="bio">（経歴や一言）</div>
+      </div>
+      <div class="coach-card">
+        <div class="avatar"></div>
+        <div class="name">（氏名）</div>
+        <div class="bio">（経歴や一言）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <h3 class="rule-left">よくある質問</h3>
+    <div class="faq">
+      <details><summary>体験はできますか？</summary><p>可能です。スケジュールを確認のうえ、フォームから「体験希望」とご連絡ください。</p></details>
+      <details><summary>必要な持ち物は？</summary><p>運動のできる服装、室内用シューズ、飲み物、タオルをご用意ください。</p></details>
+      <details><summary>月会費以外の費用は？</summary><p>遠征費・宿泊費は保護者負担です（小中共通）。</p></details>
+    </div>
+  </section>
+  <!-- ==== 共通誘導ボタン（クラブ特徴・体験申込・スケジュール） ==== -->
+<!-- ==== 共通誘導ボタン（優先度順＋配色調整） ==== -->
+<section class="common-cta">
+  <a href="contact.html" class="btn accent">お問い合わせ</a>
+  <a href="vortex.html" class="btn">クラブの特徴を見る</a>
+  <a href="schedule.html" class="btn outline">スケジュールを見る</a>
+</section>
+
+
+</main>
+
+<footer><div class="container">© 2025 VORTEX小松</div></footer>
+<script src="./header.js" defer></script>
+</body>
+</html>

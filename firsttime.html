@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>初めての方へ | VORTEX小松</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- 共通ヘッダー -->
+<header>
+  <div class="header-inner">
+    <!-- ロゴ -->
+    <div class="logo">
+      <a href="./index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
+
+    <!-- PCナビ -->
+    <nav class="menu" aria-label="グローバルナビ">
+      <ul>
+        <li><a href="./index.html" data-nav="index">ホーム</a></li>
+        <li class="nav-item has-caret">
+          <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+          <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
+            <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+            <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+          </div>
+        </li>
+        <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
+        <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
+        <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <!-- ※ ラベルはこのままでOK（位置は右上固定） -->
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+
+  <!-- ★ ここに移動： input は header 直下（mobile-panel の兄弟にする） -->
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
+
+  <!-- モバイルメニュー -->
+  <nav class="mobile-panel" aria-label="モバイルメニュー">
+    <a href="./index.html" data-nav="index">ホーム</a>
+
+    <div class="mobile-row" style="margin-bottom:10px;">
+      <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+      <button type="button" class="firsttime-toggle"
+              data-toggle="firsttime" aria-expanded="false"
+              aria-controls="mobile-firsttime-sub" title="U12/U14 を開く"></button>
+    </div>
+
+    <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
+      <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+      <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+    </div>
+
+    <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
+    <a href="./schedule.html" data-nav="schedule">スケジュール</a>
+    <a href="./contact.html" data-nav="contact">お問い合わせ</a>
+  </nav>
+</header>
+
+
+<script>
+  // 現在ページに応じてナビをハイライト（末尾ファイル名で判定）
+  (function() {
+    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const map = {
+      'index.html': 'index',
+      'firsttime.html': 'firsttime',
+      'u12.html': 'u12',
+      'u14.html': 'u14',
+      'vortex.html': 'vortex',
+      'schedule.html': 'schedule',
+      'contact.html': 'contact'
+    };
+    const key = map[path] || null;
+    if (key) {
+      document.querySelectorAll('[data-nav="'+key+'"]').forEach(a => {
+        a.classList.add('active');
+      });
+    }
+
+    // モバイル開閉時、背景スクロール抑止（あなたのCSS仕様に合わせる）
+    const toggle = document.getElementById('nav-toggle');
+    if (toggle) {
+      toggle.addEventListener('change', () => {
+        document.body.classList.toggle('nav-open', toggle.checked);
+      });
+    }
+  })();
+</script>
+
+
+
+<main class="container">
+  <nav class="breadcrumb">
+    <a href="index.html">ホーム</a><span>›</span><span>初めての方へ</span>
+  </nav>
+
+  <section class="section">
+    <h2 class="rule-left">初めての方へ</h2>
+    <p style="margin:0 0 28px;">VORTEX小松は「今この一本に夢を乗せて」を合言葉に、子どもたちが自分を信じ挑戦する環境を大切にしています。</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="thumb"></div>
+        <h3 class="rule-left">U12（小学生チーム）</h3>
+        <p class="meta">火・木・土／午前または放課後（約2時間）／月会費：5,000円</p>
+        <div class="actions">
+          <a class="btn" href="u12.html">U12の詳細</a>
+          <a class="btn outline" href="contact.html">体験申込み</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"></div>
+        <h3 class="rule-left">U14（中学生チーム）</h3>
+        <p class="meta">水・金・土・日／放課後〜夜（約2〜3時間）／月会費：8,000円</p>
+        <div class="actions">
+          <a class="btn" href="u14.html">U14の詳細</a>
+          <a class="btn outline" href="contact.html">体験申込み</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"></div>
+        <h3 class="rule-left">安全・サポート</h3>
+        <p class="meta">遠征費・宿泊費は保護者負担（小中共通）。安全第一で運営しています。</p>
+        <div class="actions"><a class="btn outline" href="schedule.html">スケジュール</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 追加：Q&Aダイジェスト -->
+  <section class="section section--tight">
+    <h2 class="rule-left">よくある質問（ダイジェスト）</h2>
+    <div class="faq">
+      <details><summary>体験参加はできますか？</summary><p>可能です。スケジュールをご確認のうえ「体験希望」とご連絡ください。</p></details>
+      <details><summary>必要な持ち物は？</summary><p>運動のできる服装、室内用シューズ、飲み物、タオルをご用意ください。</p></details>
+      <details><summary>費用について</summary><p>月会費のほか、遠征費・宿泊費は保護者負担です（小中共通）。</p></details>
+    </div>
+  </section>
+
+  <!-- 追加：参加の流れ -->
+  <section class="section section--tight">
+  <h2 class="rule-left">参加の流れ</h2>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <span class="num">01</span>
+      <p>お問い合わせまたは体験申し込みフォームからご連絡</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="num">02</span>
+      <p>実際の練習を体験参加</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="num">03</span>
+      <p>ご家庭でご検討・ご相談</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="num">04</span>
+      <p>入会手続き・活動スタート</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+</main>
+<section class="common-cta">
+  <a href="contact.html" class="btn accent">お問い合わせ</a>
+  <a href="vortex.html" class="btn">クラブの特徴を見る</a>
+  <a href="schedule.html" class="btn outline">スケジュールを見る</a>
+</section>
+<footer><div class="container">© 2025 VORTEX小松</div></footer>
+<script src="./header.js" defer></script>
+
+</body>
+</html>
