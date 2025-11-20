@@ -8,11 +8,11 @@
 
 
 <link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
 </head>
 <body>
 
 <!-- 共通ヘッダーを貼り付け -->
+<!-- 共通ヘッダー -->
 <header>
   <div class="header-inner">
     <!-- ロゴ -->
@@ -37,13 +37,13 @@
       </ul>
     </nav>
 
-    <!-- ※ ラベルはこのままでOK（位置は右上固定） -->
+    <!-- ハンバーガー（スマホ） -->
     <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
       <span></span><span></span><span></span>
     </label>
   </div>
 
-  <!-- ★ ここに移動： input は header 直下（mobile-panel の兄弟にする） -->
+  <!-- モバイル用のチェックボックス -->
   <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
 
   <!-- モバイルメニュー -->
@@ -67,6 +67,7 @@
     <a href="./contact.html" data-nav="contact">お問い合わせ</a>
   </nav>
 </header>
+
 
 
 
@@ -185,6 +186,6 @@
 </main>
 
 <footer><div class="container">© 2025 VORTEX小松</div></footer>
-<script src="./header.js" defer></script>
+<script src="./script.js"></script> 
 </body>
 </html>

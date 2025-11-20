@@ -12,22 +12,62 @@
 <body>
 
   <!-- === 共通ヘッダー === -->
+    <!-- === 共通ヘッダー === -->
   <header>
     <div class="header-inner">
-      <div class="logo">VORTEX小松</div>
-      <nav class="menu">
+      <!-- ロゴ -->
+      <div class="logo">
+        <a href="./index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+      </div>
+
+      <!-- PCナビ -->
+      <nav class="menu" aria-label="グローバルナビ">
         <ul>
-          <li><a href="./index.html">ホーム</a></li>
-          <li class="nav-item">
-            <a href="./firsttime.html">初めての方へ</a>
+          <li><a href="./index.html" data-nav="index">ホーム</a></li>
+          <li class="nav-item has-caret">
+            <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+            <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
+              <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+              <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+            </div>
           </li>
-          <li><a href="./vortex.html">VORTEXとは</a></li>
-          <li><a href="./schedule.html">スケジュール</a></li>
-          <li><a href="./contact.html" class="active">お問い合わせ</a></li>
+          <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
+          <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
+          <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
         </ul>
       </nav>
+
+      <!-- ハンバーガー -->
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
     </div>
+
+    <!-- ハンバーガー用チェックボックス -->
+    <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
+
+    <!-- モバイルメニュー -->
+    <nav class="mobile-panel" aria-label="モバイルメニュー">
+      <a href="./index.html" data-nav="index">ホーム</a>
+
+      <div class="mobile-row" style="margin-bottom:10px;">
+        <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+        <button type="button" class="firsttime-toggle"
+                data-toggle="firsttime" aria-expanded="false"
+                aria-controls="mobile-firsttime-sub" title="U12/U14 を開く"></button>
+      </div>
+
+      <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
+        <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+        <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+      </div>
+
+      <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
+      <a href="./schedule.html" data-nav="schedule">スケジュール</a>
+      <a href="./contact.html" data-nav="contact">お問い合わせ</a>
+    </nav>
   </header>
+
 
   <main class="container">
     <section class="section">
@@ -55,6 +95,7 @@
       © 2025 VORTEX小松
     </div>
   </footer>
+<script src="./script.js"></script>
 
 </body>
 </html>
