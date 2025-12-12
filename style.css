@@ -90,7 +90,7 @@ a:hover { text-decoration: underline; }
 .meta{ font-size: var(--fs-meta); color:#404a57; }
 
 /* =========================
-   固定ヘッダー & ナビ
+   固定ヘッダー & PCナビ
 ========================= */
 header{
   position: fixed;
@@ -114,7 +114,6 @@ header.is-scrolled { box-shadow: 0 6px 14px rgba(0,0,0,.12); }
 }
 .logo{ font-weight:800; font-size:1.2rem; white-space:nowrap; }
 
-/* PCナビ */
 nav.menu { display:block; }
 nav.menu > ul{
   list-style:none;
@@ -145,7 +144,7 @@ nav.menu a.active{ text-decoration:underline; text-underline-offset:6px; }
   content:"";
   position:absolute;
   left:0; right:0; top:100%;
-  height:10px; /* hover時の“橋” */
+  height:10px;
 }
 .dropdown{
   position:absolute;
@@ -198,7 +197,7 @@ nav.menu a.active{ text-decoration:underline; text-underline-offset:6px; }
   }
   nav.menu .nav-item.has-caret:hover > a::after,
   nav.menu .nav-item.has-caret:focus-within > a::after{
-    top:calc(50% + 1px); /* 上向き時に中央に見える補正 */
+    top:calc(50% + 1px);
     transform:translateY(-50%) rotate(-135deg);
     opacity:1;
   }
@@ -207,43 +206,44 @@ nav.menu a.active{ text-decoration:underline; text-underline-offset:6px; }
 /* =========================
    モバイルナビ（ハンバーガー）
 ========================= */
-.nav-toggle{ display:none; }
+.nav-toggle {
+  display: none; /* チェックボックス自体は非表示 */
+}
 
-/* ボタン本体（常に右上に固定） */
-.nav-toggle-label{
+/* 右上の3本線ボタン */
+.nav-toggle-label {
   position: fixed;
-  right:16px;
-  top:16px;
-  z-index:1600;
-  width:40px;
-  height:32px;
-  padding:0;
-  cursor:pointer;
-  display:flex;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.nav-toggle-label span{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  width:28px;
-  height:3px;
-  background:#fff;
-  border-radius:2px;
-  transition:transform .28s ease, opacity .2s ease;
+.nav-toggle-label span {
+  position: absolute;
+  width: 24px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
-.nav-toggle-label span:nth-child(1){ top:6px; }
-.nav-toggle-label span:nth-child(2){ top:50%; transform:translate(-50%,-50%); }
-.nav-toggle-label span:nth-child(3){ bottom:6px; }
+.nav-toggle-label span:nth-child(1) { transform: translateY(-6px); }
+.nav-toggle-label span:nth-child(2) { transform: translateY(0); }
+.nav-toggle-label span:nth-child(3) { transform: translateY(6px); }
 
-/* body.nav-open をトリガーに“×”へ */
-body.nav-open .nav-toggle-label span:nth-child(1){
-  transform: translate(-50%, 11px) rotate(45deg);
+/* メニューオープン時（×に変形） */
+body.nav-open .nav-toggle-label span:nth-child(1) {
+  transform: rotate(45deg);
 }
-body.nav-open .nav-toggle-label span:nth-child(2){
+body.nav-open .nav-toggle-label span:nth-child(2) {
   opacity: 0;
 }
-body.nav-open .nav-toggle-label span:nth-child(3){
-  transform: translate(-50%, -11px) rotate(-45deg);
+body.nav-open .nav-toggle-label span:nth-child(3) {
+  transform: rotate(-45deg);
 }
 
 /* モバイルメニュー本体 */
@@ -282,7 +282,7 @@ body.nav-open .nav-toggle-label span:nth-child(3){
   padding-left:10px;
   border-left:2px solid rgba(255,255,255,.25);
 }
-.mobile-sub.show{ display:block; } /* JS で付与 */
+.mobile-sub.show{ display:block; }
 
 .firsttime-toggle{
   appearance:none;
@@ -319,8 +319,17 @@ body.nav-open .nav-toggle-label span:nth-child(3){
   body.nav-open{ overflow:hidden; }
 }
 
+/* PC時はハンバーガーを消す */
+@media (min-width: 901px) {
+  .nav-toggle-label,
+  .nav-toggle,
+  .mobile-panel {
+    display: none !important;
+  }
+}
+
 /* =========================
-   Hero（ホームのみ）
+   Hero（共通） & トップ全画面ヒーロー
 ========================= */
 .hero {
   width:100%;
@@ -340,6 +349,48 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 }
 .hero h1.rule-left::after{ content:none !important; }
 
+/* トップページ：写真を画面いっぱいに表示するヒーロー */
+.hero.hero-full {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;        /* グレーを消す */
+  overflow: hidden;        /* 余分はカット */
+  height: auto;            /* 高さ指定を解除 */
+  display: block;
+}
+.hero-full-img {
+  width: 100%;
+  height: 60vh;            /* ★縦の大きさ：ここを数値で調整（例 70vh） */
+  object-fit: cover;
+  object-position: 50% 30%; /* ★写す位置：左右,上下（%で調整） */
+  display: block;
+}
+@media (min-width: 901px) {
+  .hero-full-img {
+    height: 75vh;          /* PC時の縦の大きさ（お好みで） */
+  }
+}
+
+/* 文字を写真の上にセンターで重ねる */
+.hero-full-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.hero-full-copy h1 {
+  color: #ffffff;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  text-align: center;
+  text-shadow: 0 0 16px rgba(0,0,0,0.7);
+  margin: 0;
+}
+
 /* =========================
    Grid & Cards
 ========================= */
@@ -358,10 +409,26 @@ body.nav-open .nav-toggle-label span:nth-child(3){
   flex-direction:column;
   gap:10px;
 }
-.card .thumb { background:#d9d9d9; height:170px; border-radius:10px; }
+
+/* カード内の小さい写真（U12/U14・クラブの特徴など） */
+.grid .card .thumb {
+  width: 100%;
+  height: 150px;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.grid .card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;  /* ★ここを 50% 20% などに変えると写る位置が変わる */
+  display: block;
+}
 .card h3 { margin-top:6px; }
 
-/* Info box & CTA ribbon（青帯） */
+/* Info box & CTA ribbon */
 .info-box {
   background:#f7fbff;
   border:1px solid #e0f0ff;
@@ -408,7 +475,7 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 .activity-flex {
   display:flex;
   justify-content: space-between;
-  align-items: stretch; /* 左右高さを揃える */
+  align-items: stretch;
   gap: 40px;
 }
 .activity-table {
@@ -456,7 +523,60 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 .activity-samples .card .thumb { height: 150px; }
 
 /* =========================
-   Coach：カード版（他ページ）
+   画像ボックス & ヒーロー下の写真
+========================= */
+.img-box-lg {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.img-box-lg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;   /* ★ここを動かせば表示位置調整 */
+  display: block;
+}
+
+.img-box-sm {
+  width: 180px;
+  height: 130px;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.img-box-sm img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  display: block;
+}
+
+/* ヒーロー下の大きめ写真（index / U12 / U14 / 初めての方） */
+.hero-thumb {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 960px;
+  height: 300px;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.hero-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;   /* ★ここも % で調整 */
+  display: block;
+}
+
+/* =========================
+   Coach：カード版（U12/U14）
 ========================= */
 .coach-grid {
   display:grid;
@@ -472,9 +592,17 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 }
 .coach-card .avatar {
   background:#d9d9d9;
-  height: 140px;
+  height: 200px;          /* ★顔写真カードの高さ（増減OK） */
   border-radius: 10px;
   margin-bottom:10px;
+  overflow: hidden;       /* はみ出し防止 */
+}
+.coach-card .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;   /* ★顔の位置調整：例 50% 20% に変更など */
+  display: block;
 }
 .coach-card .name { font-weight: 800; margin-bottom: 4px; color:#003366; }
 .coach-card .bio { font-size:.95rem; color:#444; }
@@ -482,12 +610,14 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 /* =========================
    Coach detail：1人ずつ（VORTEXとは）
 ========================= */
-.coach-list { display: grid; gap: 16px; }
-
+.coach-list {
+  display: grid;
+  gap: 16px;
+}
 .coach-detail{
   display:flex;
   gap:14px;
-  align-items:flex-start;
+  align-items:stretch;  /* 左右の高さをそろえる */
   padding:14px;
   border:1px solid #e5e7eb;
   border-radius:8px;
@@ -497,6 +627,8 @@ body.nav-open .nav-toggle-label span:nth-child(3){
   width: clamp(180px, 26vw, 240px);
   aspect-ratio: 4/3;
   background:#e9eef5 center/cover no-repeat;
+  /* ★背景写真の位置（% 指定） */
+  background-position: 50% 30%;
   border:1px solid #e5e7eb;
   border-radius:8px;
   box-shadow:none;
@@ -618,7 +750,6 @@ body.nav-open .nav-toggle-label span:nth-child(3){
 
 /* =========================
    共通誘導ボタン（3つ）
-   ※ 背景枠なしバージョン
 ========================= */
 .common-cta {
   display: flex;
@@ -799,6 +930,7 @@ footer {
   .coach-photo-large{
     width:100%;
     aspect-ratio: 3/2;
+    background-position: 50% 30%;
   }
 
   .overview-flex { flex-direction: column; }
@@ -818,88 +950,4 @@ footer {
     min-width: 0;
     margin: 0 auto;
   }
-}
-/* ==== PCビューでハンバーガーメニューを強制的に消す ==== */
-@media (min-width: 901px) {
-  .nav-toggle-label {
-    display: none !important;
-  }
-  .nav-toggle {
-    display: none !important;
-  }
-  .mobile-panel {
-    display: none !important;
-  }
-}
-/* 左右の高さを揃える */
-.coach-detail {
-  align-items: stretch !important;
-}
-
-/* 写真側を右側に合わせて伸縮させる */
-.coach-photo-large {
-  height: 100% !important;
-  object-fit: cover;
-}
-/* ハンバーガーメニュー */
-.menu-btn {
-  display: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
-}
-.menu-btn span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #000;
-  transition: 0.3s;
-}
-.menu-btn.open span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-.menu-btn.open span:nth-child(2) {
-  opacity: 0;
-}
-.menu-btn.open span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* メニュー展開 */
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  transition: 0.3s;
-}
-nav ul.open {
-  display: block;
-}
-@media screen and (max-width: 768px) {
-  .menu-btn {
-    display: flex;
-  }
-  nav ul {
-    display: none;
-    flex-direction: column;
-  }
-}
-
-/* ドロップダウン */
-.dropdown .submenu {
-  display: none;
-  flex-direction: column;
-  margin-top: 5px;
-}
-.dropdown .submenu.open {
-  display: flex;
-}
-.arrow {
-  display: inline-block;
-  transition: transform 0.3s;
-  cursor: pointer;
-  margin-left: 5px;
-}
-.arrow.rotate {
-  transform: rotate(90deg);
 }

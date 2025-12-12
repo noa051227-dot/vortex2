@@ -87,7 +87,7 @@
       });
     }
 
-    // モバイル開閉時、背景スクロール抑止（あなたのCSS仕様に合わせる）
+    // モバイル開閉時、背景スクロール抑止
     const toggle = document.getElementById('nav-toggle');
     if (toggle) {
       toggle.addEventListener('change', () => {
@@ -101,7 +101,7 @@
 
 <main class="container">
   <nav class="breadcrumb">
-    <a href="index.html">ホーム</a><span>›</span><a href="first-time.html">初めての方へ</a><span>›</span><span>U14</span>
+    <a href="index.html">ホーム</a><span>›</span><a href="firsttime.html">初めての方へ</a><span>›</span><span>U14</span>
   </nav>
 
   <section class="section">
@@ -128,32 +128,58 @@
     </div>
   </section>
 
-  <!-- こんなことやってます（3つ復活） -->
+  <!-- こんなことやってます（3つ） -->
   <section class="section activity-samples">
     <h3 class="rule-left">クラブの取り組み</h3>
     <div class="grid">
-      <div class="card"><div class="thumb"></div><h3 class="rule-left">戦術理解</h3><p class="meta">ローテ・システム理解、ポジション別課題。</p></div>
-      <div class="card"><div class="thumb"></div><h3 class="rule-left">ゲーム形式</h3><p class="meta">実戦に近い状況で判断力を鍛える。</p></div>
-      <div class="card"><div class="thumb"></div><h3 class="rule-left">フィジカル</h3><p class="meta">トレーニングによる瞬発・持久・アジリティを強化。</p></div>
+      <div class="card">
+        <div class="thumb" aria-label="戦術理解の写真">
+          <img src="images/u14_tactics.jpg" alt="U14の戦術理解の様子"style="object-position: 50% 40%;">
+        </div>
+        <h3 class="rule-left">戦術理解</h3>
+        <p class="meta">ローテ・システム理解、ポジション別課題。</p>
+      </div>
+
+      <div class="card">
+        <div class="thumb" aria-label="ゲーム形式練習の写真">
+          <img src="images/u14_game.jpg" alt="U14のゲーム形式練習の様子"style="object-position: 50% 40%;">
+        </div>
+        <h3 class="rule-left">ゲーム形式</h3>
+        <p class="meta">実戦に近い状況で判断力を鍛える。</p>
+      </div>
+
+      <div class="card">
+        <div class="thumb" aria-label="フィジカルトレーニングの写真">
+          <img src="images/u14_physical.jpg" alt="U14のフィジカルトレーニングの様子"style="object-position: 50% 40%;">
+        </div>
+        <h3 class="rule-left">フィジカル</h3>
+        <p class="meta">トレーニングによる瞬発・持久・アジリティを強化。</p>
+      </div>
     </div>
   </section>
 
-  <!-- 指導者紹介（FAQの前に挿入） -->
+  <!-- 指導者紹介（FAQの前） -->
   <section class="section">
     <h3 class="rule-left">指導者紹介</h3>
     <div class="coach-grid">
       <div class="coach-card">
-        <div class="avatar" aria-label="写真予定"></div>
+        <div class="avatar" aria-label="U14指導者1の写真">
+          <img src="images/ayu.jpg" alt="U14指導者1の写真"style="object-position: 50% 40%;">
+        </div>
         <div class="name">（氏名）</div>
         <div class="bio">（経歴や一言）</div>
       </div>
       <div class="coach-card">
-        <div class="avatar"></div>
+        <div class="avatar" aria-label="U14指導者2の写真">
+          <img src="images/sor.jpg" alt="U14指導者2の写真"style="object-position: 50% 40%;">
+        </div>
         <div class="name">（氏名）</div>
         <div class="bio">（経歴や一言）</div>
       </div>
       <div class="coach-card">
-        <div class="avatar"></div>
+        <div class="avatar" aria-label="U14指導者3の写真">
+          <img src="images/sho.jpg" alt="U14指導者3の写真"style="object-position: 50% 40%;">
+        </div>
         <div class="name">（氏名）</div>
         <div class="bio">（経歴や一言）</div>
       </div>
@@ -167,19 +193,18 @@
       <details><summary>中学からバレーを始めても遅くないですか？</summary><p>全く遅くありません。中学から始めて活躍している選手も多く、基礎からしっかり練習すれば十分上達できます。</p></details>
       <details><summary>進路についてもサポートしてもらえますか？</summary><p>希望があれば、練習の取り組み方や進路相談も行います。高校の情報提供や見学のアドバイスも可能な範囲でサポートします。</p></details>
       <details><summary>勉強との両立はできますか？</summary><p>テスト前は練習をお休みすることも可能で、スケジュールも事前に相談できます。
-      さらに、U12・U14ともに、定期的に勉強会を行う予定です。 部活やクラブだけでなく、勉強面でもサポートしながら、両立できるよう一緒に考えていきます</p></details>
+      さらに、U12・U14ともに、定期的に勉強会を行う予定です。 部活やクラブだけでなく、勉強面でもサポートしながら、両立できるよう一緒に考えていきます。</p></details>
       <details><summary>選抜チームや県選抜を目指したいのですが…。</summary><p>目標に向かって必要な練習や心構えを一緒に考えます。チャレンジしたい気持ちを全力で応援します。</p></details>
       <details><summary>保護者としてどのくらい関わればいいですか？</summary><p>試合の応援や送迎で関わっていただくことが多いです。選手が自分で考えて行動できるように、見守るスタンスをお願いしています。</p></details>
     </div>
   </section>
-  <!-- ==== 共通誘導ボタン（クラブ特徴・体験申込・スケジュール） ==== -->
-<!-- ==== 共通誘導ボタン（優先度順＋配色調整） ==== -->
-<section class="common-cta">
-  <a href="contact.html" class="btn accent">お問い合わせ</a>
-  <a href="vortex.html" class="btn">クラブの特徴を見る</a>
-  <a href="schedule.html" class="btn outline">スケジュールを見る</a>
-</section>
 
+  <!-- ==== 共通誘導ボタン ==== -->
+  <section class="common-cta">
+    <a href="contact.html" class="btn accent">お問い合わせ</a>
+    <a href="vortex.html" class="btn">クラブの特徴を見る</a>
+    <a href="schedule.html" class="btn outline">スケジュールを見る</a>
+  </section>
 
 </main>
 
