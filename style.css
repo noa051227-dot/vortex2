@@ -1056,36 +1056,3 @@ body.nav-open .nav-toggle-label span:nth-child(3){ transform: rotate(-45deg); }
 .dropdown a:hover{
   background: rgba(255,255,255,.12);
 }
-/* =========================
-   モバイル：初めての方へ（文字切れ対策）
-========================= */
-.mobile-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 10px;
-}
-
-.mobile-row > a{
-  flex: 1 1 auto;     /* ←リンクを伸ばす */
-  min-width: 0;       /* ←これが無いと文字が切れやすい */
-  padding-right: 8px; /* ←ボタンと被らない */
-  white-space: nowrap;/* ←1行で見せたいならON */
-  overflow: hidden;   /* ←切れる場合は… */
-  text-overflow: ellipsis; /* ←…末尾を「…」にする（切れない優先なら次の行に変更） */
-}
-
-/* 2行にして切れない方が良ければ↑3行を消してこっちにする
-.mobile-row > a{
-  flex: 1 1 auto;
-  min-width: 0;
-  padding-right: 8px;
-  white-space: normal;
-}
-*/
-
-.firsttime-toggle{
-  flex: 0 0 36px;     /* ←ボタン幅を固定 */
-  width: 36px;
-  height: 36px;
-}
