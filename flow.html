@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>参加の流れ｜VORTEX小松｜体験～入会まで</title>
+<meta name="description" content="VORTEX小松の参加の流れ（体験～入会）を詳しくご案内。持ち物や当日の流れ、活動場所もまとめています。">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <!-- ロゴ -->
+    <div class="logo">
+      <a href="./index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
+
+    <!-- PCナビ -->
+    <nav class="menu" aria-label="グローバルナビ">
+      <ul>
+        <li><a href="./index.html" data-nav="index">ホーム</a></li>
+
+        <li class="nav-item has-caret">
+          <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+
+          <!-- ▼ドロップダウン（PC） -->
+          <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
+            <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+            <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+            <a href="./program.html" data-nav="program">取り組み</a>
+          </div>
+        </li>
+
+        <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
+        <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
+        <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <!-- ハンバーガー（ラベル） -->
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+
+  <!-- チェックボックス（開閉） -->
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
+
+  <!-- モバイルメニュー -->
+  <nav class="mobile-panel" aria-label="モバイルメニュー">
+    <a href="./index.html" data-nav="index">ホーム</a>
+
+    <div class="mobile-row" style="margin-bottom:10px;">
+      <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+      <button type="button"
+              class="firsttime-toggle"
+              data-toggle="firsttime"
+              aria-expanded="false"
+              aria-controls="mobile-firsttime-sub"
+              title="U12/U14/取り組み を開く"></button>
+    </div>
+
+    <!-- ▼ドロップダウン（モバイル） -->
+    <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
+      <a href="./u12.html" data-nav="u12">U12（小学生）</a>
+      <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+      <a href="./program.html" data-nav="program">取り組み</a>
+    </div>
+
+    <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
+    <a href="./schedule.html" data-nav="schedule">スケジュール</a>
+    <a href="./contact.html" data-nav="contact">お問い合わせ</a>
+  </nav>
+</header>
+
+
+<script>
+(function () {
+  // ===== 現在ページの active（下線） =====
+  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+  const map = {
+    'index.html': 'index',
+    'firsttime.html': 'firsttime',
+    'u12.html': 'u12',
+    'u14.html': 'u14',
+    'flow.html': 'flow',
+    'vortex.html': 'vortex',
+    'schedule.html': 'schedule',
+    'contact.html': 'contact'
+  };
+
+  const key = map[path] || null;
+  if (key) {
+    document.querySelectorAll('[data-nav="' + key + '"]').forEach(a => a.classList.add('active'));
+  }
+
+  // ===== モバイル開閉：背景スクロール抑止 =====
+  const toggle = document.getElementById('nav-toggle');
+  if (toggle) {
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('nav-open', toggle.checked);
+    });
+  }
+
+  // ===== モバイル：初めての方へ サブメニュー開閉 =====
+  const btn = document.querySelector('.firsttime-toggle');
+  const sub = document.getElementById('mobile-firsttime-sub');
+
+  if (btn && sub) {
+    btn.addEventListener('click', () => {
+      const isOpen = sub.classList.toggle('show');
+      btn.classList.toggle('is-open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+})();
+</script>
+
+
+<main class="container">
+  <nav class="breadcrumb">
+    <a href="index.html">ホーム</a><span>›</span><span>参加の流れ</span>
+  </nav>
+
+  <section class="section">
+    <h2 class="rule-left">参加の流れ</h2>
+    <p class="meta" style="margin:0 0 22px;">
+      体験から入会までの流れを、はじめての方にも分かりやすくまとめました。迷ったらまずは体験からで大丈夫です。
+    </p>
+
+    <!-- 詳細ステップ -->
+    <div class="flow-steps flow-steps--detail">
+      <div id="step1" class="flow-step flow-step--detail">
+        <span class="num">01</span>
+        <div class="flow-text">
+          <h3 class="rule-left" style="margin:0 0 6px;">お問い合わせ・体験申込み</h3>
+          <p class="meta" style="margin:0;">
+            フォームから「希望チーム（U12/U14）」と「希望日」を送ってください。確認後、こちらからご連絡します。
+          </p>
+        </div>
+      </div>
+
+      <div id="step2" class="flow-step flow-step--detail">
+        <span class="num">02</span>
+        <div class="flow-text">
+          <h3 class="rule-left" style="margin:0 0 6px;">体験参加（当日の流れ）</h3>
+          <p class="meta" style="margin:0;">
+            開始10分前を目安に集合 → 受付 → ウォームアップ → 体験練習（基礎～ゲーム形式）という流れです。
+          </p>
+        </div>
+      </div>
+
+      <div id="step3" class="flow-step flow-step--detail">
+        <span class="num">03</span>
+        <div class="flow-text">
+          <h3 class="rule-left" style="margin:0 0 6px;">ご家庭で検討・ご相談</h3>
+          <p class="meta" style="margin:0;">
+            体験後、続けるかどうかをご家庭で検討できます。不安な点はそのまま相談してください。
+          </p>
+        </div>
+      </div>
+
+      <div id="step4" class="flow-step flow-step--detail">
+        <span class="num">04</span>
+        <div class="flow-text">
+          <h3 class="rule-left" style="margin:0 0 6px;">入会手続き・活動スタート</h3>
+          <p class="meta" style="margin:0;">
+            手続きが完了したら活動スタート。目標に合わせて、練習の取り組み方も一緒に整えていきます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 持ち物 -->
+  <section class="section section--tight">
+    <h2 class="rule-left">体験の持ち物</h2>
+    <div class="info-box">
+      <ul style="margin:0; padding-left:18px;">
+        <li>運動できる服装</li>
+        <li>室内シューズ</li>
+        <li>飲み物（季節に応じて多め）</li>
+        <li>タオル</li>
+        <li>サポーター（必要な場合）</li>
+        <li>（あれば）ボール ※なくてもOK</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 場所 -->
+  <section class="section section--tight">
+    <h2 class="rule-left">活動場所</h2>
+
+    <div class="overview-cards" style="margin-top:14px;">
+      <div class="overview-card">
+        <h3>U12（小学生）</h3>
+        <ul class="overview-list">
+          <li><span class="k">主な場所</span><span class="v">松陽小学校 体育館</span></li>
+          <li><span class="k">ページ</span><span class="v"><a href="u12.html">U12の詳細を見る</a></span></li>
+        </ul>
+        <div class="overview-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3269.5874037829184!2d136.4537!3d36.4045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff83c8df4f9b1cf%3A0x21a0a7737b4e5cb5!2z5p2x5bGL5biC5pyo5aSn5a2m!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <h3>U14（中学生）</h3>
+        <ul class="overview-list">
+          <li><span class="k">主な場所</span><span class="v">松陽中学校 体育館</span></li>
+          <li><span class="k">ページ</span><span class="v"><a href="u14.html">U14の詳細を見る</a></span></li>
+        </ul>
+        <div class="overview-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3269.5874037829184!2d136.4537!3d36.4045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff83c8df4f9b1cf%3A0x21a0a7737b4e5cb5!2z5p2x5bGL5biC5pyo5aSn5a2m!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <p class="meta" style="margin:10px 0 0;">
+      ※ 会場の詳細や時間は、各チームページで最新の内容をご確認ください。
+    </p>
+  </section>
+
+  <!-- 誘導 -->
+  <section class="common-cta">
+    <a href="contact.html" class="btn accent">体験申込み・お問い合わせ</a>
+    <a href="firsttime.html" class="btn">初めての方へ</a>
+    <a href="schedule.html" class="btn outline">スケジュールを見る</a>
+  </section>
+</main>
+
+<footer><div class="container">© 2025 VORTEX小松</div></footer>
+<script src="./script.js"></script>
+</body>
+</html>

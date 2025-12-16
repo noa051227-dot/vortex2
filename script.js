@@ -1,91 +1,79 @@
-// =========================
-// 初めての方へ（U12/U14）モバイル用トグル
-// =========================
-function initFirstTimeToggle() {
-  const btn = document.querySelector(".firsttime-toggle");
-  const sub = document.getElementById("mobile-firsttime-sub");
-  if (!btn || !sub) return;
+(() => {
+  // ===== 現在ページのナビ強調 =====
+  const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const map = {
+    "index.html": "index",
+    "firsttime.html": "firsttime",
+    "u12.html": "u12",
+    "u14.html": "u14",
+    "vortex.html": "vortex",
+    "program.html": "program",
+    "schedule.html": "schedule",
+    "contact.html": "contact",
+  };
+  const key = map[file];
 
-  // 初期状態は閉じる
-  sub.style.display = "none";
-  btn.setAttribute("aria-expanded", "false");
-  btn.classList.remove("is-open");
+  if (key) {
+    document.querySelectorAll(`[data-nav="${key}"]`).forEach((a) => a.classList.add("active"));
+  }
 
-  btn.addEventListener("click", () => {
-    const isOpen = sub.style.display === "block";
-    sub.style.display = isOpen ? "none" : "block";
-    btn.classList.toggle("is-open", !isOpen);
-    btn.setAttribute("aria-expanded", String(!isOpen));
+  // ===== ハンバーガー開閉：body.nav-open と同期 =====
+  const toggle = document.getElementById("nav-toggle");
+  const syncNavOpen = () => document.body.classList.toggle("nav-open", !!toggle?.checked);
+
+  if (toggle) {
+    syncNavOpen();
+    toggle.addEventListener("change", syncNavOpen);
+  }
+
+  // ===== モバイル：サブメニュー開閉（複数対応） =====
+  document.querySelectorAll("[data-submenu-toggle]").forEach((btn) => {
+    const id = btn.getAttribute("aria-controls");
+    const panel = id ? document.getElementById(id) : null;
+    if (!panel) return;
+
+    btn.addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("show");
+      btn.classList.toggle("is-open", isOpen);
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
   });
-}
 
-// =========================
-// ハンバーガー開閉時：スクロールロック＋サブメニューリセット
-// =========================
-function initNavToggle() {
-  const navToggle = document.getElementById("nav-toggle");
-  if (!navToggle) return;
+  document.querySelectorAll(".mobile-panel a").forEach((a) => {
+    a.addEventListener("click", () => {
+      if (!toggle) return;
+      toggle.checked = false;
+      syncNavOpen();
+      document.querySelectorAll(".mobile-sub.show").forEach((el) => el.classList.remove("show"));
+      document.querySelectorAll("[data-submenu-toggle].is-open").forEach((b) => {
+        b.classList.remove("is-open");
+        b.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
+})();
+(function () {
+  const targets = document.querySelectorAll('[data-href]');
 
-  const sync = () => {
-    document.body.classList.toggle("nav-open", navToggle.checked);
+  targets.forEach(el => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    if (!el.hasAttribute('role')) el.setAttribute('role', 'link');
 
-    // 閉じたときはU12/U14も閉じる
-    if (!navToggle.checked) {
-      const btn = document.querySelector(".firsttime-toggle");
-      const sub = document.getElementById("mobile-firsttime-sub");
-      if (btn && sub) {
-        sub.style.display = "none";
-        btn.classList.remove("is-open");
-        btn.setAttribute("aria-expanded", "false");
+    const go = () => {
+      const href = el.getAttribute('data-href');
+      if (href) window.location.href = href;
+    };
+
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('a, button, input, textarea, select, summary, label')) return;
+      go();
+    });
+
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        go();
       }
-    }
-  };
-
-  navToggle.addEventListener("change", sync);
-  sync();
-}
-
-// =========================
-// ヘッダーに影（固定ヘッダー用）
-// =========================
-function initHeaderShadow() {
-  const header = document.querySelector("header");
-  if (!header) return;
-
-  const onScroll = () => {
-    if (window.scrollY > 4) header.classList.add("is-scrolled");
-    else header.classList.remove("is-scrolled");
-  };
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-}
-
-// =========================
-// スケジュールページ：表と地図の高さ調整（あれば）
-// =========================
-function adjustMapHeights() {
-  document.querySelectorAll(".activity-flex").forEach((sec) => {
-    const table = sec.querySelector(".activity-table");
-    const iframe = sec.querySelector(".map-box iframe");
-    if (!table || !iframe) return;
-
-    if (window.innerWidth > 900) {
-      iframe.style.height = table.offsetHeight + "px";
-    } else {
-      iframe.style.height = "320px";
-    }
+    });
   });
-}
-
-// =========================
-// 初期化
-// =========================
-document.addEventListener("DOMContentLoaded", () => {
-  initFirstTimeToggle();
-  initNavToggle();
-  initHeaderShadow();
-});
-
-window.addEventListener("load", adjustMapHeights);
-window.addEventListener("resize", adjustMapHeights);
+})();

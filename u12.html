@@ -8,6 +8,27 @@
 
 <link rel="stylesheet" href="style.css">
 </head>
+<div class="floating-actions">
+
+  <!-- 体験・お問い合わせ -->
+  <a href="contact.html" class="fab fab-contact" aria-label="体験・お問い合わせ">
+    ✉
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/【ここにアカウント名】/"
+     class="fab fab-instagram"
+     target="_blank"
+     rel="noopener"
+     aria-label="Instagram">
+    <!-- Instagram icon (SVG) -->
+    <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2ZM17.8 7.6a.9.9 0 1 1-.9-.9.9.9 0 0 1 .9.9Z"/>
+    </svg>
+  </a>
+
+</div>
+
 <body>
 
 <!-- 共通ヘッダー -->
@@ -22,26 +43,31 @@
     <nav class="menu" aria-label="グローバルナビ">
       <ul>
         <li><a href="./index.html" data-nav="index">ホーム</a></li>
+
         <li class="nav-item has-caret">
           <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
+
+          <!-- ▼ドロップダウン（PC） -->
           <div class="dropdown" role="group" aria-label="初めての方へのサブメニュー">
             <a href="./u12.html" data-nav="u12">U12（小学生）</a>
             <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+            <a href="./program.html" data-nav="program">取り組み</a>
           </div>
         </li>
+
         <li><a href="./vortex.html" data-nav="vortex">VORTEXとは</a></li>
         <li><a href="./schedule.html" data-nav="schedule">スケジュール</a></li>
         <li><a href="./contact.html" data-nav="contact">お問い合わせ</a></li>
       </ul>
     </nav>
 
-    <!-- ※ ラベルはこのままでOK（位置は右上固定） -->
+    <!-- ハンバーガー（ラベル） -->
     <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
       <span></span><span></span><span></span>
     </label>
   </div>
 
-  <!-- ★ ここに移動： input は header 直下（mobile-panel の兄弟にする） -->
+  <!-- チェックボックス（開閉） -->
   <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="メニューを開閉">
 
   <!-- モバイルメニュー -->
@@ -50,14 +76,19 @@
 
     <div class="mobile-row" style="margin-bottom:10px;">
       <a href="./firsttime.html" data-nav="firsttime">初めての方へ</a>
-      <button type="button" class="firsttime-toggle"
-              data-toggle="firsttime" aria-expanded="false"
-              aria-controls="mobile-firsttime-sub" title="U12/U14 を開く"></button>
+      <button type="button"
+              class="firsttime-toggle"
+              data-toggle="firsttime"
+              aria-expanded="false"
+              aria-controls="mobile-firsttime-sub"
+              title="U12/U14/取り組み を開く"></button>
     </div>
 
+    <!-- ▼ドロップダウン（モバイル） -->
     <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へのサブメニュー">
       <a href="./u12.html" data-nav="u12">U12（小学生）</a>
       <a href="./u14.html" data-nav="u14">U14（中学生）</a>
+      <a href="./program.html" data-nav="program">取り組み</a>
     </div>
 
     <a href="./vortex.html" data-nav="vortex">VORTEXとは</a>
@@ -68,34 +99,48 @@
 
 
 <script>
-  // 現在ページに応じてナビをハイライト（末尾ファイル名で判定）
-  (function() {
-    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-    const map = {
-      'index.html': 'index',
-      'firsttime.html': 'firsttime',
-      'u12.html': 'u12',
-      'u14.html': 'u14',
-      'vortex.html': 'vortex',
-      'schedule.html': 'schedule',
-      'contact.html': 'contact'
-    };
-    const key = map[path] || null;
-    if (key) {
-      document.querySelectorAll('[data-nav="'+key+'"]').forEach(a => {
-        a.classList.add('active');
-      });
-    }
+(function () {
+  // ===== 現在ページの active（下線） =====
+  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
-    // モバイル開閉時、背景スクロール抑止（あなたのCSS仕様に合わせる）
-    const toggle = document.getElementById('nav-toggle');
-    if (toggle) {
-      toggle.addEventListener('change', () => {
-        document.body.classList.toggle('nav-open', toggle.checked);
-      });
-    }
-  })();
+  const map = {
+    'index.html': 'index',
+    'firsttime.html': 'firsttime',
+    'u12.html': 'u12',
+    'u14.html': 'u14',
+    'flow.html': 'flow',
+    'vortex.html': 'vortex',
+    'schedule.html': 'schedule',
+    'contact.html': 'contact'
+  };
+
+  const key = map[path] || null;
+  if (key) {
+    document.querySelectorAll('[data-nav="' + key + '"]').forEach(a => a.classList.add('active'));
+  }
+
+  // ===== モバイル開閉：背景スクロール抑止 =====
+  const toggle = document.getElementById('nav-toggle');
+  if (toggle) {
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('nav-open', toggle.checked);
+    });
+  }
+
+  // ===== モバイル：初めての方へ サブメニュー開閉 =====
+  const btn = document.querySelector('.firsttime-toggle');
+  const sub = document.getElementById('mobile-firsttime-sub');
+
+  if (btn && sub) {
+    btn.addEventListener('click', () => {
+      const isOpen = sub.classList.toggle('show');
+      btn.classList.toggle('is-open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+})();
 </script>
+
 
 <!--メイン-->
 
@@ -128,11 +173,11 @@
     </div>
   </section>
 
-  <!-- こんなことやってます（3つ復活） -->
+  <!-- こんなことやってます -->
   <section class="section activity-samples">
     <h3 class="rule-left">クラブの取り組み</h3>
     <div class="grid">
-      <div class="card">
+      <div class="card is-link" data-href="program.html#u12">
         <div class="thumb" aria-label="U12の基礎ドリルの写真">
           <img src="images/u12_basic.jpg" alt="U12の基礎ドリルの様子"style="object-position: 50% 40%;">
         </div>
@@ -140,7 +185,7 @@
         <p class="meta">サーブ・レシーブ・トスの基礎の理解。</p>
       </div>
 
-      <div class="card">
+      <div class="card is-link" data-href="program.html#u12">
         <div class="thumb" aria-label="U12のミニゲームの写真">
           <img src="images/u12_game.jpg" alt="U12のミニゲームの様子"style="object-position: 50% 40%;">
         </div>
@@ -148,17 +193,18 @@
         <p class="meta">主体性、協調性を育むゲーム形式。</p>
       </div>
 
-      <div class="card">
+      <div class="card is-link" data-href="program.html#u12">
         <div class="thumb" aria-label="U12の体づくりの写真">
           <img src="images/u12_body.jpg" alt="U12の体づくり・トレーニングの様子"style="object-position: 50% 40%;">
         </div>
         <h3 class="rule-left">ボディコントロール</h3>
         <p class="meta">自分の体を理解して、自在に使いこなせるように。</p>
       </div>
+      
     </div>
   </section>
 
-  <!-- 指導者紹介（FAQの前に挿入） -->
+  <!-- 指導者紹介-->
   <section class="section">
     <h3 class="rule-left">指導者紹介</h3>
     <div class="coach-grid">
