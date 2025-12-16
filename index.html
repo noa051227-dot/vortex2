@@ -263,5 +263,42 @@
 
 <footer><div class="container">© 2025 VORTEX小松</div></footer>
 <script src="./script.js"></script> 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ① ハンバーガー開閉と「×」表示（body.nav-open）を同期
+  const navToggle = document.getElementById('nav-toggle');
+  const syncNav = () => document.body.classList.toggle('nav-open', !!(navToggle && navToggle.checked));
+  if (navToggle) {
+    navToggle.addEventListener('change', syncNav);
+    syncNav();
+  }
+
+  // ② モバイル：ドロップダウン（初めての方へ / VORTEXとは）をクリックで開閉
+  document.querySelectorAll('.mobile-panel .mobile-row').forEach(row => {
+    const btn = row.querySelector('button.firsttime-toggle');
+    if (!btn) return;
+
+    // mobile-row の直後にある .mobile-sub を開閉する想定
+    const sub = row.nextElementSibling;
+    if (!sub || !sub.classList.contains('mobile-sub')) return;
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      btn.classList.toggle('is-open');
+      sub.classList.toggle('show');
+    });
+  });
+
+  // ③ リンク押したらメニュー閉じる（任意だけど便利）
+  document.querySelectorAll('.mobile-panel a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (!navToggle) return;
+      navToggle.checked = false;
+      syncNav();
+    });
+  });
+});
+</script>
+
 </body>
 </html>
