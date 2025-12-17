@@ -34,7 +34,9 @@
 <!-- 共通ヘッダー -->
 <header>
   <div class="header-inner">
-    <div class="logo"><a href="index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a></div>
+    <div class="logo">
+      <a href="index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
 
     <!-- PC MENU -->
     <nav class="menu" aria-label="メインナビゲーション">
@@ -45,7 +47,8 @@
         <li class="nav-item has-caret">
           <a href="firsttime.html">初めての方へ</a>
           <div class="dropdown" role="menu" aria-label="初めての方へメニュー">
-            <a href="firsttime.html#faq">よくある質問</a>
+            <a href="u12.html">U12（小学生）</a>
+            <a href="u14.html">U14（中学生）</a>
             <a href="flow.html">参加の流れ</a>
           </div>
         </li>
@@ -73,23 +76,40 @@
     </label>
 
     <!-- MOBILE PANEL -->
-    <div class="mobile-panel" aria-label="モバイルメニュー">
+    <nav class="mobile-panel" aria-label="モバイルメニュー">
       <a href="index.html">ホーム</a>
 
+      <!-- 初めての方へ（モバイル） -->
       <div class="mobile-row">
-        <a href="firsttime.html">初めての方へ</a>
-        <button class="firsttime-toggle" type="button" aria-label="初めての方へを開く"></button>
+        <a class="mobile-toplink" href="firsttime.html">初めての方へ</a>
+        <button data-submenu-toggle
+          type="button"
+          class="firsttime-toggle"
+         
+          aria-expanded="false"
+          aria-controls="mobile-firsttime-sub"
+          title="U12/U14/参加の流れを開く">
+        </button>
       </div>
-      <div class="mobile-sub">
-        <a href="firsttime.html#faq">よくある質問</a>
+      <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へサブメニュー">
+        <a href="u12.html">U12（小学生）</a>
+        <a href="u14.html">U14（中学生）</a>
         <a href="flow.html">参加の流れ</a>
       </div>
 
+      <!-- VORTEXとは（モバイル） -->
       <div class="mobile-row">
-        <a href="vortex.html">VORTEXとは</a>
-        <button class="vortex-toggle firsttime-toggle" type="button" aria-label="VORTEXとはを開く"></button>
+        <a class="mobile-toplink" href="vortex.html">VORTEXとは</a>
+        <button data-submenu-toggle
+          type="button"
+          class="firsttime-toggle vortex-toggle"
+         
+          aria-expanded="false"
+          aria-controls="mobile-vortex-sub"
+          title="理念/特徴/由来/取り組みを開く">
+        </button>
       </div>
-      <div class="vortex-sub mobile-sub">
+      <div id="mobile-vortex-sub" class="mobile-sub vortex-sub" role="group" aria-label="VORTEXとはサブメニュー">
         <a href="vortex.html#rinen">理念</a>
         <a href="vortex.html#tokucho">特徴</a>
         <a href="vortex.html#yurai">由来</a>
@@ -98,53 +118,10 @@
 
       <a href="schedule.html">スケジュール</a>
       <a href="contact.html">お問い合わせ</a>
-    </div>
+    </nav>
   </div>
 </header>
 
-
-<script>
-(function () {
-  // ===== 現在ページの active（下線） =====
-  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-
-  const map = {
-    'index.html': 'index',
-    'firsttime.html': 'firsttime',
-    'u12.html': 'u12',
-    'u14.html': 'u14',
-    'flow.html': 'flow',
-    'vortex.html': 'vortex',
-    'schedule.html': 'schedule',
-    'contact.html': 'contact'
-  };
-
-  const key = map[path] || null;
-  if (key) {
-    document.querySelectorAll('[data-nav="' + key + '"]').forEach(a => a.classList.add('active'));
-  }
-
-  // ===== モバイル開閉：背景スクロール抑止 =====
-  const toggle = document.getElementById('nav-toggle');
-  if (toggle) {
-    toggle.addEventListener('change', () => {
-      document.body.classList.toggle('nav-open', toggle.checked);
-    });
-  }
-
-  // ===== モバイル：初めての方へ サブメニュー開閉 =====
-  const btn = document.querySelector('.firsttime-toggle');
-  const sub = document.getElementById('mobile-firsttime-sub');
-
-  if (btn && sub) {
-    btn.addEventListener('click', () => {
-      const isOpen = sub.classList.toggle('show');
-      btn.classList.toggle('is-open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  }
-})();
-</script>
 
 
 <!--メイン-->
@@ -261,43 +238,8 @@
 </main>
 
 <footer><div class="container">© 2025 VORTEX小松</div></footer>
-<script src="./script.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // ① ハンバーガー開閉と「×」表示（body.nav-open）を同期
-  const navToggle = document.getElementById('nav-toggle');
-  const syncNav = () => document.body.classList.toggle('nav-open', !!(navToggle && navToggle.checked));
-  if (navToggle) {
-    navToggle.addEventListener('change', syncNav);
-    syncNav();
-  }
+<script src="./script.js" defer></script>
 
-  // ② モバイル：ドロップダウン（初めての方へ / VORTEXとは）をクリックで開閉
-  document.querySelectorAll('.mobile-panel .mobile-row').forEach(row => {
-    const btn = row.querySelector('button.firsttime-toggle');
-    if (!btn) return;
-
-    // mobile-row の直後にある .mobile-sub を開閉する想定
-    const sub = row.nextElementSibling;
-    if (!sub || !sub.classList.contains('mobile-sub')) return;
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      btn.classList.toggle('is-open');
-      sub.classList.toggle('show');
-    });
-  });
-
-  // ③ リンク押したらメニュー閉じる（任意だけど便利）
-  document.querySelectorAll('.mobile-panel a').forEach(a => {
-    a.addEventListener('click', () => {
-      if (!navToggle) return;
-      navToggle.checked = false;
-      syncNav();
-    });
-  });
-});
-</script>
 
 </body>
 </html>

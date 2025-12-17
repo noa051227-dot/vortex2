@@ -1056,3 +1056,256 @@ body.nav-open .nav-toggle-label span:nth-child(3){ transform: rotate(-45deg); }
 .dropdown a:hover{
   background: rgba(255,255,255,.12);
 }
+/* モバイル行：リンクが切れない＆ボタンが被らない */
+.mobile-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.mobile-row .mobile-toplink{
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-row button{
+  flex: 0 0 auto;
+}
+/* =========================
+   VORTEXとは：強み（短く・図っぽく・カード無し）
+========================= */
+.page-vortex .lead{
+  margin-top: 6px;
+  color: var(--text-sub);
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.strength-flow{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin: 14px 0 10px;
+}
+
+.strength-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.strength-icon{
+  font-size: 22px;
+  line-height: 1;
+}
+
+.strength-text strong{
+  display:block;
+  color:#003366;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.strength-text small{
+  display:block;
+  color: var(--text-sub);
+  font-size: var(--fs-meta);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.strength-arrow{
+  opacity: .55;
+  font-weight: 900;
+  user-select: none;
+}
+
+.strength-list{
+  margin: 10px 0 0;
+  padding-left: 1.2em;
+}
+
+.strength-details{
+  margin-top: 12px;
+  padding: 10px 0;
+}
+
+.strength-details > summary{
+  cursor: pointer;
+  font-weight: 900;
+  color:#003366;
+}
+
+.strength-details-body{
+  margin-top: 10px;
+  color: var(--text-sub);
+}
+
+.page-vortex .note{
+  color: var(--text-sub);
+  font-size: var(--fs-meta);
+}
+
+@media (max-width: 600px){
+  .strength-arrow{ display:none; }
+  .strength-flow{
+    align-items:flex-start;
+    gap:10px;
+  }
+  .strength-item{
+    width:100%;
+  }
+}
+/* =========================
+   VORTEXとは：枠を消して軽く整える（おすすめ）
+========================= */
+
+/* ① 全体カード枠を消す（四角い箱感をなくす） */
+.page-vortex .vtx-card{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* ② 写真の“箱の中”感を消す（inlineのborder-radiusを上書き） */
+.page-vortex .thumb{
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+/* ③ 見出し＋リードは少しだけ整える */
+.page-vortex .vtx-lead{
+  margin: 10px 0 12px;
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* ④ 要点（3つ/4つ）を “箱” じゃなく “軽い区切り” に */
+.page-vortex .vtx-points{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+@media (max-width: 700px){
+  .page-vortex .vtx-points{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* ⑤ 要点アイテム：背景ベタをやめて、左ラインで区切る */
+.page-vortex .vtx-point{
+  display: flex;
+  gap: 10px;
+  padding: 10px 0 10px 10px;
+  border-left: 3px solid rgba(0,0,0,.12);
+  background: transparent;
+  border-radius: 0;
+}
+
+/* ⑥ 数字：丸→角丸スクエアに変更（ここが一番効く） */
+.page-vortex .vtx-badge{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #fff;
+  background: #0b5bd3;
+  flex-shrink: 0;
+}
+
+/* ⑦ サブ文 */
+.page-vortex .vtx-sub{
+  opacity: .9;
+  margin-top: 2px;
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+/* ⑧ 折りたたみ：線だけで軽く */
+.page-vortex .vtx-more{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.10);
+}
+
+.page-vortex .vtx-more summary{
+  cursor: pointer;
+  font-weight: 900;
+  user-select: none;
+  list-style: none;
+}
+
+.page-vortex .vtx-more summary::-webkit-details-marker{ display:none; }
+
+.page-vortex .vtx-more summary::after{
+  content: "＋";
+  float: right;
+  font-weight: 900;
+  opacity: .7;
+}
+
+.page-vortex .vtx-more[open] summary::after{ content:"－"; }
+
+.page-vortex .vtx-detail{
+  margin-top: 10px;
+  line-height: 1.85;
+}
+/* 詳しく（details）の上の薄い線を消す */
+.page-vortex .vtx-more{
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+/* セクション見出し（活動理念など）を読みやすく */
+.page-vortex .rule-left{
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+/* 要点の“タイトル”（挑戦/仲間/成長など）を読みやすく */
+.page-vortex .vtx-point strong{
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+/* サブ文は詰まりやすいので余白と行間を少し増やす */
+.page-vortex .vtx-sub{
+  margin-top: 6px !important;
+  line-height: 1.7 !important;
+}
+
+/* 小見出し周りのレイアウトを整える（バッジと文字が縦に揃う） */
+.page-vortex .vtx-point{
+  align-items: flex-start;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* バッジも少しだけ締める（見出しが目立つ） */
+.page-vortex .vtx-badge{
+  width: 26px;
+  height: 26px;
+  font-size: .95rem;
+}

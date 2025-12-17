@@ -13,7 +13,9 @@
 <!-- ===== ヘッダー ===== -->
 <header>
   <div class="header-inner">
-    <div class="logo"><a href="index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a></div>
+    <div class="logo">
+      <a href="index.html" style="color:#fff; text-decoration:none;">VORTEX小松</a>
+    </div>
 
     <!-- PC MENU -->
     <nav class="menu" aria-label="メインナビゲーション">
@@ -24,7 +26,8 @@
         <li class="nav-item has-caret">
           <a href="firsttime.html">初めての方へ</a>
           <div class="dropdown" role="menu" aria-label="初めての方へメニュー">
-            <a href="firsttime.html#faq">よくある質問</a>
+            <a href="u12.html">U12（小学生）</a>
+            <a href="u14.html">U14（中学生）</a>
             <a href="flow.html">参加の流れ</a>
           </div>
         </li>
@@ -52,23 +55,40 @@
     </label>
 
     <!-- MOBILE PANEL -->
-    <div class="mobile-panel" aria-label="モバイルメニュー">
+    <nav class="mobile-panel" aria-label="モバイルメニュー">
       <a href="index.html">ホーム</a>
 
+      <!-- 初めての方へ（モバイル） -->
       <div class="mobile-row">
-        <a href="firsttime.html">初めての方へ</a>
-        <button class="firsttime-toggle" type="button" aria-label="初めての方へを開く"></button>
+        <a class="mobile-toplink" href="firsttime.html">初めての方へ</a>
+        <button data-submenu-toggle
+          type="button"
+          class="firsttime-toggle"
+         
+          aria-expanded="false"
+          aria-controls="mobile-firsttime-sub"
+          title="U12/U14/参加の流れを開く">
+        </button>
       </div>
-      <div class="mobile-sub">
-        <a href="firsttime.html#faq">よくある質問</a>
+      <div id="mobile-firsttime-sub" class="mobile-sub" role="group" aria-label="初めての方へサブメニュー">
+        <a href="u12.html">U12（小学生）</a>
+        <a href="u14.html">U14（中学生）</a>
         <a href="flow.html">参加の流れ</a>
       </div>
 
+      <!-- VORTEXとは（モバイル） -->
       <div class="mobile-row">
-        <a href="vortex.html">VORTEXとは</a>
-        <button class="vortex-toggle firsttime-toggle" type="button" aria-label="VORTEXとはを開く"></button>
+        <a class="mobile-toplink" href="vortex.html">VORTEXとは</a>
+        <button data-submenu-toggle
+          type="button"
+          class="firsttime-toggle vortex-toggle"
+         
+          aria-expanded="false"
+          aria-controls="mobile-vortex-sub"
+          title="理念/特徴/由来/取り組みを開く">
+        </button>
       </div>
-      <div class="vortex-sub mobile-sub">
+      <div id="mobile-vortex-sub" class="mobile-sub vortex-sub" role="group" aria-label="VORTEXとはサブメニュー">
         <a href="vortex.html#rinen">理念</a>
         <a href="vortex.html#tokucho">特徴</a>
         <a href="vortex.html#yurai">由来</a>
@@ -77,7 +97,7 @@
 
       <a href="schedule.html">スケジュール</a>
       <a href="contact.html">お問い合わせ</a>
-    </div>
+    </nav>
   </div>
 </header>
 
@@ -221,98 +241,20 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-    const map = {
-      "index.html": "index",
-      "firsttime.html": "firsttime",
-      "u12.html": "u12",
-      "u14.html": "u14",
-      "vortex.html": "vortex",
-      "program.html": "program",
-      "schedule.html": "schedule",
-      "contact.html": "contact"
-    };
-    const key = map[file];
-    if (key) {
-      document.querySelectorAll('[data-nav="'+key+'"]').forEach(a => a.classList.add("active"));
-    }
 
-    // 2) ハンバーガー開閉（bodyにnav-open）
-    const navToggle = document.getElementById("nav-toggle");
-    if (navToggle) {
-      const sync = () => document.body.classList.toggle("nav-open", navToggle.checked);
-      navToggle.addEventListener("change", sync);
-      sync();
-    }
+<!-- 右下：固定ボタン（お問い合わせ / Instagram） -->
+<div class="floating-actions" aria-label="ショートカット">
+  <a class="fab fab-contact" href="contact.html" aria-label="お問い合わせへ">✉</a>
 
-    // 3) モバイル：サブメニュー（初めての方へ）
-    const btnFirst = document.querySelector(".firsttime-toggle");
-    const subFirst = document.getElementById("mobile-firsttime-sub");
-    if (btnFirst && subFirst) {
-      btnFirst.addEventListener("click", () => {
-        const open = subFirst.classList.toggle("show");
-        btnFirst.classList.toggle("is-open", open);
-        btnFirst.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    }
+  <a class="fab fab-instagram" href="★ここをインスタURLに★" target="_blank" rel="noopener" aria-label="Instagramへ">
+    <!-- Instagram icon -->
+    <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 4.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2Zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2ZM17.8 7.6a.9.9 0 1 1-.9-.9.9.9 0 0 1 .9.9Z"/>
+    </svg>
+  </a>
+</div>
 
-    // 4) モバイル：サブメニュー（VORTEXとは）
-    const btnVortex = document.querySelector(".vortex-toggle");
-    const subVortex = document.getElementById("mobile-vortex-sub");
-    if (btnVortex && subVortex) {
-      btnVortex.addEventListener("click", () => {
-        const open = subVortex.classList.toggle("show");
-        btnVortex.classList.toggle("is-open", open);
-        btnVortex.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    }
-
-    document.querySelectorAll(".mobile-panel a").forEach(a => {
-      a.addEventListener("click", () => {
-        if (navToggle) navToggle.checked = false;
-        document.body.classList.remove("nav-open");
-      });
-    });
-  })();
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // ① ハンバーガー開閉と「×」表示（body.nav-open）を同期
-  const navToggle = document.getElementById('nav-toggle');
-  const syncNav = () => document.body.classList.toggle('nav-open', !!(navToggle && navToggle.checked));
-  if (navToggle) {
-    navToggle.addEventListener('change', syncNav);
-    syncNav();
-  }
-
-  // ② モバイル：ドロップダウン（初めての方へ / VORTEXとは）をクリックで開閉
-  document.querySelectorAll('.mobile-panel .mobile-row').forEach(row => {
-    const btn = row.querySelector('button.firsttime-toggle');
-    if (!btn) return;
-
-    // mobile-row の直後にある .mobile-sub を開閉する想定
-    const sub = row.nextElementSibling;
-    if (!sub || !sub.classList.contains('mobile-sub')) return;
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      btn.classList.toggle('is-open');
-      sub.classList.toggle('show');
-    });
-  });
-
-  // ③ リンク押したらメニュー閉じる（任意だけど便利）
-  document.querySelectorAll('.mobile-panel a').forEach(a => {
-    a.addEventListener('click', () => {
-      if (!navToggle) return;
-      navToggle.checked = false;
-      syncNav();
-    });
-  });
-});
-</script>
+  <script src="./script.js" defer></script>
 
 </body>
 </html>
