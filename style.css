@@ -1621,3 +1621,197 @@ body.nav-open .nav-toggle-label span:nth-child(3){ transform: rotate(-45deg); }
     grid-template-columns: 1fr !important;
   }
 }
+/* =========================
+   Header：ページ全体の雰囲気に合わせる（白＋青＋上グラデーション）
+========================= */
+
+/* ヘッダー本体 */
+header{
+  background: #fff !important;
+  color: var(--blue-dark) !important;
+  box-shadow: 0 8px 18px rgba(0, 40, 90, .06) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+}
+
+/* カード上のグラデーションみたいな“境界線” */
+/* 下にグラデーション境界線（上じゃなく下） */
+header::before{
+  content: none !important;
+}
+
+header::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:5px;
+  background: linear-gradient(90deg, rgba(0,144,255,.95), rgba(0,144,255,.10));
+}
+
+
+/* ロゴ */
+.logo a{
+  color: var(--blue-dark) !important;
+  text-decoration: none !important;
+}
+.logo a:hover{ text-decoration: none !important; }
+
+/* PCメニュー：文字色を青に */
+nav.menu a{
+  color: var(--blue-dark) !important;
+}
+nav.menu a:hover{
+  color: #003e7a !important;
+  text-decoration: none !important;
+}
+nav.menu a.active{
+  color: #003e7a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 6px;
+}
+
+/* PCの矢印（caret）も青に */
+@media (min-width:901px){
+  nav.menu .nav-item.has-caret > a::after{
+    border-right-color: var(--blue-dark) !important;
+    border-bottom-color: var(--blue-dark) !important;
+  }
+}
+
+/* ドロップダウン：白背景＋青文字 */
+.dropdown{
+  background: #fff !important;
+  border: 1px solid rgba(0, 110, 220, .16) !important;
+  box-shadow: 0 18px 40px rgba(0, 40, 90, .14) !important;
+}
+.dropdown a{
+  color: var(--blue-dark) !important;
+}
+.dropdown a:hover{
+  background: rgba(0, 144, 255, .08) !important;
+  color: #003e7a !important;
+}
+
+/* ハンバーガー（線）を青に */
+.nav-toggle-label span{
+  background: var(--blue-dark) !important;
+}
+
+/* モバイルメニュー：白背景＋青文字に統一 */
+.mobile-panel{
+  background: #fff !important;
+  box-shadow: -10px 0 26px rgba(0,0,0,.14) !important;
+}
+.mobile-panel a{
+  color: var(--blue-dark) !important;
+}
+.mobile-panel a:hover{
+  background: rgba(0,144,255,.08) !important;
+  color: #003e7a !important;
+}
+
+/* モバイルのサブメニュー左ライン */
+.mobile-sub{
+  border-left: 2px solid rgba(0, 110, 220, .22) !important;
+}
+
+/* モバイルの開閉ボタンも青系に */
+.firsttime-toggle{
+  border-color: rgba(0, 110, 220, .45) !important;
+  background: rgba(0, 144, 255, .06) !important;
+  color: var(--blue-dark) !important;
+}
+.firsttime-toggle:hover{
+  background: rgba(0, 144, 255, .12) !important;
+}
+/* 背景に薄いドット（うるさくならない） */
+body{
+  background-color:#f7fbff;
+  background-image:
+    radial-gradient(rgba(0,144,255,.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+}
+/* 見出しにアクセント（丸＋下線グラデ） */
+.rule-left{
+  position: relative;
+  padding-left: 14px;
+}
+
+.rule-left::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top: .55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #0b5bd3;
+}
+
+.rule-left::after{
+  content:"";
+  display:block;
+  height: 3px;
+  width: 84px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(0,144,255,.95), rgba(0,144,255,.12));
+}
+/* 見出しにアクセント（丸＋下線グラデ） */
+.rule-left{
+  position: relative;
+  padding-left: 14px;
+}
+
+.rule-left::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top: .55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #0b5bd3;
+}
+
+.rule-left::after{
+  content:"";
+  display:block;
+  height: 3px;
+  width: 84px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(0,144,255,.95), rgba(0,144,255,.12));
+}
+/* ===== header 微調整：今の見た目を保って完成度UP ===== */
+
+/* 全体の高さ/余白を少しだけ引き締める */
+header .header-inner{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* PCメニュー：押しやすいけど主張しすぎない */
+nav.menu a{
+  padding: 10px 14px !important;
+  border-radius: 999px;
+}
+
+/* 今いるページ：さりげなく分かる（薄い背景＋下線） */
+nav.menu a.active{
+  background: rgba(0,144,255,.10) !important;
+  border: 1px solid rgba(0,144,255,.18) !important;
+  text-decoration: none !important;
+}
+
+nav.menu a.active::after{
+  content:"";
+  display:block;
+  height: 2px;
+  width: 60%;
+  margin: 6px auto 0;
+  border-radius: 999px;
+  background: rgba(0,144,255,.75);
+}
