@@ -36,6 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+
+      // 他のサブメニューが開いていたら閉じる（スマホでの不具合予防）
+      document.querySelectorAll(".mobile-sub.show").forEach((el) => {
+        if (el !== panel) el.classList.remove("show");
+      });
+      document.querySelectorAll(".mobile-panel button.is-open").forEach((b) => {
+        if (b !== btn) {
+          b.classList.remove("is-open");
+          b.setAttribute("aria-expanded", "false");
+        }
+      });
+
       const isOpen = panel.classList.toggle("show");
       btn.classList.toggle("is-open", isOpen);
       btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
@@ -55,6 +67,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.querySelectorAll('.mobile-panel button[data-toggle="vortex"]').forEach((btn) => {
     bindSubmenuButton(btn, document.getElementById("mobile-vortex-sub"));
+  });
+
+  // ===== GoogleカレンダーURL（メールをHTMLに直書きしない） =====
+  // schedule.html 側で data-cal-b64 を設定しておくと、ここで復元してsrcに入れる
+  document.querySelectorAll('iframe[data-cal-b64]').forEach((iframe) => {
+    if (iframe.getAttribute('src')) return;
+    const b64 = iframe.getAttribute('data-cal-b64');
+    if (!b64) return;
+    try {
+      iframe.setAttribute('src', atob(b64));
+    } catch (e) {
+      // 何もしない
+    }
   });
 
   // ===== リンク押したらメニュー閉じる（ついでにサブも閉じる） =====
