@@ -1349,3 +1349,50 @@ body.page-program{ padding-top:var(--header-h) !important; }
 @media (max-width: 720px){
   .sheet-iframe{ height:480px; }
 }
+/* 埋め込みの見た目 */
+.sheet-embed{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+
+  /* ★ここがポイント：見せる窓の高さ */
+  height:560px;
+}
+
+/* ★ここがポイント：中身を上にずらして、上の「VORTEX: 表示_PC」を隠す */
+.sheet-iframe{
+  display:block;
+  width:100%;
+  border:0;
+
+  /* 上を隠す分だけ上に移動 */
+  transform: translateY(-36px);
+
+  /* 上下を切り抜いても表が欠けないようにiframe自体を少し大きくする */
+  height: calc(560px + 80px);
+}
+
+/* スマホは少し高さを変える（必要なら微調整） */
+@media (max-width: 720px){
+  /* 窓を小さくして下の余白を減らす */
+  .sheet-embed{ height: 360px; }
+
+  /* 上のラベルを隠す分だけ上にずらす（必要なら微調整） */
+  .sheet-iframe{
+    transform: translateY(-36px);
+
+    /* 窓 + 余裕（タブ隠し分） */
+    height: calc(360px + 80px);
+  }
+}
+/* カレンダーの高さを予定表に合わせる */
+.calendar-embed{
+  height:560px; /* PC */
+}
+
+@media (max-width: 720px){
+  .calendar-embed{
+    height:360px; /* スマホ */
+  }
+}
