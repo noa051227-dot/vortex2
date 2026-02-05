@@ -1325,15 +1325,21 @@ body.page-program{ padding-top:var(--header-h) !important; }
   .mobile-panel .vortex-toggle::after{content:none !important;}
   .mobile-panel .firsttime-toggle{background-image:none !important;}
 }
-/* 予定表：PC/スマホ出し分け */
-.only-pc{ display:block; }
-.only-sp{ display:none; }
-@media (max-width: 720px){
-  .only-pc{ display:none; }
-  .only-sp{ display:block; }
+.only-pc { display: block; }
+.only-sp { display: none; }
+
+@media (hover: none) and (pointer: coarse) {
+  .only-pc { display: none; }
+  .only-sp { display: block; }
 }
 
-/* 埋め込みの見た目 */
+.sheet-embed {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
 .sheet-embed{
   background:#fff;
   border:1px solid var(--line);
@@ -1395,4 +1401,16 @@ body.page-program{ padding-top:var(--header-h) !important; }
   .calendar-embed{
     height:360px; /* スマホ */
   }
+}
+/* スマホ案内文（スマホ端末だけ表示） */
+.schedule-note {
+  display: none;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 10px 0;
+  opacity: 0.9;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .schedule-note { display: block; }
 }
