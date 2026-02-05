@@ -1414,3 +1414,20 @@ body.page-program{ padding-top:var(--header-h) !important; }
 @media (hover: none) and (pointer: coarse) {
   .schedule-note { display: block; }
 }
+.calendar-note{
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 10px 0 8px;
+  opacity: .9;
+}
+.calendar-open-btn{
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid rgba(0,0,0,.15);
+}
+@media (max-width: 720px), (hover:none) and (pointer:coarse){
+  .calendar-open-btn{ display:block; text-align:center; }
+}
